@@ -1,0 +1,16 @@
+apiVersion: App/v1
+kind: Ingress
+metadata:
+  name: nodejs-ingress
+spec:
+  rules:
+    - host: your-domain.com # Replace with your actual domain or IP
+      http:
+        paths:
+          - path: /
+            pathType: Prefix
+            backend:
+              service:
+                name: nodejs-service
+                port:
+                  number: 80 # Port number defined in the service
