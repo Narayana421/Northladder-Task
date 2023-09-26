@@ -1,0 +1,26 @@
+version: '3'
+services:
+  nodejs-app:
+    build:
+      context: . # Use the current directory as the build context
+      dockerfile: Dockerfile
+    ports:
+      - "3000:3000"
+    environment:
+      - MONGODB_URI=mongodb://mongodb ip address:27017/your-database-name
+      - REDIS_HOST=redis # Use the service name defined for Redis below
+
+  mongo:
+    image: mongo:4.4 
+    container_name: mongo
+    ports:
+      - "27017:27017"
+    volumes:
+      - ./mongo-data:/data/db # Map a volume for persistent data storage
+
+  redis:
+    image: redis:6 # You can specify the desired Redis version
+    container_name: redis
+    ports:
+      - "6379:6379"
+
